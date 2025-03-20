@@ -1,7 +1,5 @@
 --now we will imported data through pgadmin and checking if the data is imported successfully or not. 
 
-Pgadmin : 
-
 SELECT * FROM bronze.crm_cust_info
 
 SELECT * FROM bronze.crm_prd_info
