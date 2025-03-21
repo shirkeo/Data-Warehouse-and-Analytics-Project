@@ -48,7 +48,7 @@ ORDER BY ci.cst_gndr,ca.gen
 
 --- made changes to master code and also comfortable attribute names
 DROP VIEW IF EXISTS gold.dim_customer;
-
+create view gold.dim_customer AS
 select ROW_NUMBER() over (order by cst_id) AS customer_key, 
     ci.cst_id as customer_id,
     ci.cst_key as customer_number,
@@ -94,7 +94,7 @@ having count(*)>1
 
 --no such Duplicates
 --sorting the columns and giving friendly names
-
+drop view IF EXISTS gold.dim_products;
 create view gold.dim_products as
 select 
     ROW_NUMBER() over (ORDER BY pn.prd_start_dt,pn.prd_key) as product_key,
@@ -117,7 +117,7 @@ where prd_end_dt is Null
 select * from gold.dim_products 
 
 --now create fact table
-drop view gold.fact_sales
+drop view IF EXISTS gold.fact_sales;
 create view gold.fact_sales as
 select sls_ord_num as order_number,
     pr.product_key,
